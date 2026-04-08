@@ -9,7 +9,7 @@ create:
 	podman run -d \
 		--name $(CONTAINER_NAME) \
 		--replace \
-		-p 3306:3306 \
+		-p 3307:3306 \
 		-v $(VOLUME_NAME):/var/lib/mysql \
 		-e MYSQL_ROOT_PASSWORD=root090215 \
 		$(IMAGE_NAME)
@@ -18,7 +18,8 @@ create:
 	@until podman logs $(CONTAINER_NAME) 2>&1 | grep -q "ready for connections"; do \
 		sleep 1; \
 	done
-	podman exec -it netflixdb mysql -u edgar -p -D netflixdb
+	echo "Finalizado"
+	# podman exec -it netflixdb mysql -u edgar -p -D netflixdb
 
 clean:
 	podman stop $(CONTAINER_NAME) || true
