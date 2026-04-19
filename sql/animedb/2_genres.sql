@@ -49,3 +49,11 @@ INSERT INTO genres VALUES (40, 'Thriller');
 INSERT INTO genres VALUES (41, 'Vampire');
 INSERT INTO genres VALUES (42, 'Yaoi');
 INSERT INTO genres VALUES (43, 'Yuri');
+
+CREATE TABLE IF NOT EXISTS anime_genres (
+    anime_id INT,
+    genre_id INT,
+    PRIMARY KEY (anime_id, genre_id),
+    FOREIGN KEY (anime_id) REFERENCES anime(anime_id),
+    FOREIGN KEY (genre_id) REFERENCES genres(genre_id)
+);

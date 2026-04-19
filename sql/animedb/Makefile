@@ -9,12 +9,14 @@ create:
 	podman run -d \
 		--name $(CONTAINER_NAME) \
 		--replace \
-		-p 3307:3306 \
+		-p 3306:3306 \
 		-v $(VOLUME_NAME):/var/lib/mysql \
 		-e MYSQL_ROOT_PASSWORD=root090215 \
+		-e MYSQL_DATABASE=animedb \
+		-e MYSQL_USER=edgar \
+		-e MYSQL_PASSWORD=090215 \
 		$(IMAGE_NAME)
 	@echo "Esperando a que MySQL abra el puerto 3306..."
-	@# Este comando espera hasta que el log diga que está listo
 	@until podman logs $(CONTAINER_NAME) 2>&1 | grep -q "ready for connections"; do \
 		sleep 1; \
 	done
